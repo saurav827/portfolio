@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saurav Kumar | AI Engineer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-container">
+    <h2 class="logo">SK</h2>
+    <div class="nav-links">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<header class="hero" data-aos="fade-up" data-aos-duration="1000">
+  <div class="hero-content">
+    <div class="profile-image-wrapper">
+      <div class="profile-glow"></div>
+      <img src="profile.jpg" alt="Saurav Kumar" class="profile-image">
+    </div>
+    
+    <h1 class="hero-title">Saurav Kumar</h1>
+    <p class="hero-subtitle">AI Engineer • Web Developer</p>
+    <p class="hero-description">Crafting intelligent applications with modern web technologies</p>
+    
+    <div class="hero-buttons">
+      <a href="resume.pdf" download class="btn btn-primary">Download Resume</a>
+      <a href="#projects" class="btn btn-secondary">View Work</a>
+      
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-number">5+</span>
+        <span class="stat-label">Projects</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">2+</span>
+        <span class="stat-label">Years</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">∞</span>
+        <span class="stat-label">Coffee</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>Scroll to explore</span>
+    <div class="arrow-down"></div>
+  </div>
+</header>
+
+<!-- ABOUT SECTION -->
+<section id="about" class="about" data-aos="fade-right" data-aos-duration="800">
+  <div class="section-container">
+    <div class="section-header">
+      <h2>About Me</h2>
+      <div class="header-accent"></div>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm an AI Engineer passionate about building intelligent solutions that solve real-world problems. With expertise in machine learning, deep learning, and full-stack web development, I create applications that are both powerful and user-friendly.</p>
+        
+        <p>When I'm not coding, you'll find me exploring new AI frameworks, contributing to open-source projects, or brainstorming the next big idea.</p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-tag">Python</div>
+        <div class="skill-tag">TensorFlow</div>
+        <div class="skill-tag">Machine Learning</div>
+        <div class="skill-tag">JavaScript</div>
+        <div class="skill-tag">React</div>
+        <div class="skill-tag">Deep Learning</div>
+        <div class="skill-tag">SQL</div>
+        <div class="skill-tag">Web Dev</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS SECTION -->
+<section id="projects" class="projects" data-aos="fade-up" data-aos-duration="800">
+  <div class="section-container">
+    <div class="section-header">
+      <h2>Featured Projects</h2>
+      <div class="header-accent"></div>
+    </div>
+
+    <div class="projects-grid">
+      <div class="project-card" data-aos="zoom-in" data-aos-duration="600">
+        <div class="project-image">
+          <img src="project1.jpg" alt="Loan Prediction">
+          <div class="project-overlay">
+            <a href="project1.html" class="project-link">View Project →</a>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3>Loan Prediction System</h3>
+          <p>ML model to predict loan eligibility using advanced algorithms</p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">ML</span>
+            <span class="tag">Data Science</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="100">
+        <div class="project-image">
+          <img src="project2.jpg" alt="Recommendation System">
+          <div class="project-overlay">
+            <a href="project2.html" class="project-link"></a>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3>Recommendation Engine</h3>
+          <p>Smart recommendation system using collaborative filtering</p>
+          <div class="project-tags">
+            <span class="tag">AI</span>
+            <span class="tag">Python</span>
+            <span class="tag">Algorithms</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="200">
+        <div class="project-image">
+          <img src="project3.jpg" alt="Web App">
+          <div class="project-overlay">
+            <a href="project3.html" class="project-link"></a>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3>Modern Web Application</h3>
+          <p>Full-stack web app with React frontend and API backend</p>
+          <div class="project-tags">
+            <span class="tag">React</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Web Dev</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact" class="contact" data-aos="fade-left" data-aos-duration="800">
+  <div class="section-container">
+    <div class="section-header">
+      <h2>Get in Touch</h2>
+      <div class="header-accent"></div>
+    </div>
+
+    <div class="contact-content">
+      <p class="contact-intro">Have a project in mind? Let's collaborate and create something amazing.</p>
+
+      <div class="contact-grid">
+        <a href="mailto:sauravkumarnonia@gmail.com" class="contact-card">
+          <div class="contact-icon">📧</div>
+          <h3>Email</h3>
+          <p>sauravkumarnonia@gmail.com</p>
+        </a>
+
+        <a href="https://github.com/saurav827" target="_blank" class="contact-card">
+          <div class="contact-icon">💻</div>
+          <h3>GitHub</h3>
+          <p>github.com/saurav827</p>
+        </a>
+
+        <a href="https://www.linkedin.com/in/sauravkrumar9/" target="_blank" class="contact-card">
+          <div class="contact-icon">🔗</div>
+          <h3>LinkedIn</h3>
+          <p>Connect with me</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-content">
+    <p>© 2026 Saurav Kumar. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Sitemap</a>
+    </div>
+  </div>
+</footer>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="spinner"></div>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="script.js"></script>
+<script>
+AOS.init({
+  duration: 800,
+  once: false,
+  offset: 100
+});
+</script>
+
+</body>
+</html>
+<section id="experience">
+  <h2>Experience</h2>
+  <p><b>Web Development Intern</b> – InternPe</p>
+  <p><b>Web Developer Intern</b> – Apex Planet Software</p>
+</section>
+
+<section id="skills">
+  <h2>Tech Stack</h2>
+  <p>Python, Machine Learning, HTML, CSS, JavaScript, MySQL, Git</p>
+</section>
