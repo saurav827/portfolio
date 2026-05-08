@@ -1,51 +1,51 @@
 // Navbar Scroll Effect
+const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
-  const navbar = document.getElementById('navbar');
-  if (window.scrollY > 50) {
+  if (window.scrollY > 20) {
     navbar.classList.add('scrolled');
   } else {
     navbar.classList.remove('scrolled');
   }
 });
 
-// Smooth Scrolling for Navigation Links
+// Smooth Scrolling for Anchors
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
-    e.preventDefault();
     const targetId = this.getAttribute('href');
     if (targetId === '#') return;
     
-    const targetElement = document.querySelector(targetId);
-    if (targetElement) {
+    e.preventDefault();
+    const target = document.querySelector(targetId);
+    if (target) {
       window.scrollTo({
-        top: targetElement.offsetTop - 80, // Offset for fixed navbar
+        top: target.offsetTop,
         behavior: 'smooth'
       });
     }
   });
 });
 
-// Simple Form Submission Handling
-const contactForm = document.getElementById('contact-form');
-if (contactForm) {
-  contactForm.addEventListener('submit', (e) => {
+// Form Handling (Simulation)
+const form = document.querySelector('.contact-form');
+if (form) {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const submitBtn = contactForm.querySelector('button');
-    const originalText = submitBtn.innerText;
+    const btn = form.querySelector('button');
+    const originalText = btn.textContent;
     
-    // Simulate sending
-    submitBtn.innerText = 'Sending...';
-    submitBtn.disabled = true;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
     
+    // Simulate API call
     setTimeout(() => {
-      submitBtn.innerText = 'Message Sent!';
-      submitBtn.style.background = '#22c55e';
-      contactForm.reset();
+      btn.textContent = 'Message Sent!';
+      btn.style.background = '#10b981'; // Green success
+      form.reset();
       
       setTimeout(() => {
-        submitBtn.innerText = originalText;
-        submitBtn.style.background = '';
-        submitBtn.disabled = false;
+        btn.textContent = originalText;
+        btn.style.background = '';
+        btn.disabled = false;
       }, 3000);
     }, 1500);
   });

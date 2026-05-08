@@ -3,34 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saurav Kumar | Computer Science Student & Developer</title>
-    <meta name="description" content="Personal portfolio of Saurav Kumar, a Computer Science Engineering student specializing in Web Development and Machine Learning.">
+    <title>Saurav Kumar | Software Developer Portfolio</title>
+    <meta name="description" content="Personal portfolio of Saurav Kumar, a Computer Science student and developer focused on building clean, efficient, and user-centric software.">
     
-    <!-- Fonts -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- CSS -->
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Navbar -->
+    <!-- Navigation -->
     <nav id="navbar">
-        <div class="container nav-content">
-            <a href="#" class="nav-logo">SAURAV</a>
+        <div class="container nav-container">
+            <a href="#" class="nav-logo">Saurav <span>Kumar</span></a>
             <div class="nav-links">
                 <a href="#about">About</a>
                 <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
+                <a href="#projects">Work</a>
                 <a href="#experience">Experience</a>
                 <a href="#contact">Contact</a>
             </div>
-            <a href="resume.pdf" class="btn btn-secondary" style="padding: 0.5rem 1.2rem; font-size: 0.9rem;">Resume</a>
+            <a href="resume.pdf" class="btn btn-outline" target="_blank">Resume</a>
         </div>
     </nav>
 
@@ -38,12 +38,12 @@
     <header class="hero">
         <div class="container">
             <div class="hero-content">
-                <span class="hero-tag">Available for Internships</span>
-                <h1>Building software with purpose and precision.</h1>
-                <p>Hi, I'm Saurav Kumar. I'm a Computer Science Engineering student passionate about full-stack development, machine learning, and solving complex problems through code.</p>
+                <span class="hero-subtitle">Engineering Student & Developer</span>
+                <h1>Crafting software with a focus on simplicity and performance.</h1>
+                <p>I'm a Computer Science student who loves building practical applications. My work focuses on bridging the gap between complex backend logic and intuitive frontend experiences.</p>
                 <div class="btn-group">
-                    <a href="#projects" class="btn btn-primary">View My Work</a>
-                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="resume.pdf" class="btn btn-outline" target="_blank">Download Resume</a>
                 </div>
             </div>
         </div>
@@ -52,68 +52,56 @@
     <!-- About Section -->
     <section id="about">
         <div class="container">
-            <div class="section-header">
-                <h2>About Me</h2>
-                <div class="divider"></div>
-            </div>
-            <div class="about-grid">
-                <div class="about-text">
-                    <p>I'm currently pursuing my B.Tech in Computer Science and Engineering. My journey into programming started with a curiosity about how the web works, which quickly evolved into a deep interest in software architecture and data science.</p>
-                    <p>I enjoy the process of turning a vague idea into a working application. Whether it's building a responsive frontend or training a machine learning model, I focus on writing clean, maintainable code and delivering a great user experience.</p>
-                    <p>When I'm not studying or coding, I like to keep up with the latest tech trends and work on side projects that challenge my current skill set.</p>
+            <h2 class="section-title">About Me</h2>
+            <div class="about-wrap">
+                <div class="about-content">
+                    <p>I am currently pursuing my B.Tech in Computer Science and Engineering. What started as a hobby of exploring how websites are built has turned into a career path dedicated to software development.</p>
+                    <p>My approach is simple: I focus on solving real-world problems through code. I enjoy the challenge of learning new frameworks and tools, but I believe that understanding the fundamentals is what truly makes a great developer.</p>
+                    <p>Beyond coding, I am an advocate for open-source software and continuous learning. I'm always looking for opportunities to collaborate on meaningful projects that can make a difference.</p>
                 </div>
-                <div class="glass-card">
-                    <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">Quick Info</h3>
-                    <ul style="list-style: none; color: var(--text-secondary); font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.75rem;">
-                        <li><strong style="color: var(--text-primary);">Role:</strong> Student Developer</li>
-                        <li><strong style="color: var(--text-primary);">Education:</strong> B.Tech in CSE</li>
-                        <li><strong style="color: var(--text-primary);">Location:</strong> India</li>
-                        <li><strong style="color: var(--text-primary);">Interests:</strong> Web Dev, ML, Open Source</li>
-                    </ul>
+                <div class="about-image">
+                    <img src="profile.jpg" alt="Saurav Kumar">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" style="background: rgba(255,255,255,0.02);">
+    <section id="skills">
         <div class="container">
-            <div class="section-header">
-                <h2>Technical Skills</h2>
-                <div class="divider"></div>
-            </div>
+            <h2 class="section-title">Technical Skills</h2>
             <div class="skills-grid">
-                <div class="glass-card skill-item">
+                <div class="card skill-card">
                     <i class="fab fa-python"></i>
                     <span>Python</span>
                 </div>
-                <div class="glass-card skill-item">
+                <div class="card skill-card">
                     <i class="fab fa-js"></i>
                     <span>JavaScript</span>
                 </div>
-                <div class="glass-card skill-item">
+                <div class="card skill-card">
                     <i class="fab fa-react"></i>
                     <span>React.js</span>
                 </div>
-                <div class="glass-card skill-item">
+                <div class="card skill-card">
                     <i class="fas fa-code"></i>
-                    <span>HTML/CSS</span>
+                    <span>HTML / CSS</span>
                 </div>
-                <div class="glass-card skill-item">
+                <div class="card skill-card">
                     <i class="fas fa-brain"></i>
-                    <span>Machine Learning</span>
+                    <span>ML Basics</span>
                 </div>
-                <div class="glass-card skill-item">
+                <div class="card skill-card">
                     <i class="fas fa-database"></i>
                     <span>MySQL</span>
                 </div>
-                <div class="glass-card skill-item">
+                <div class="card skill-card">
                     <i class="fab fa-git-alt"></i>
-                    <span>Git & GitHub</span>
+                    <span>Git / GitHub</span>
                 </div>
-                <div class="glass-card skill-item">
+                <div class="card skill-card">
                     <i class="fas fa-server"></i>
-                    <span>Flask / Node.js</span>
+                    <span>Node.js / Flask</span>
                 </div>
             </div>
         </div>
@@ -122,55 +110,61 @@
     <!-- Projects Section -->
     <section id="projects">
         <div class="container">
-            <div class="section-header">
-                <h2>Featured Projects</h2>
-                <div class="divider"></div>
-            </div>
+            <h2 class="section-title">Projects</h2>
             <div class="projects-grid">
                 <!-- Project 1 -->
-                <div class="glass-card project-card">
-                    <img src="project1.png" alt="Loan Prediction" class="project-img">
-                    <div class="project-info">
+                <div class="card project-card">
+                    <div class="project-thumb">
+                        <img src="project1.png" alt="Loan Prediction">
+                    </div>
+                    <div class="project-body">
                         <div class="project-tags">
                             <span class="tag">Python</span>
-                            <span class="tag">Scikit-learn</span>
+                            <span class="tag">ML</span>
                         </div>
                         <h3>Loan Prediction System</h3>
-                        <p>A machine learning project that predicts the likelihood of loan approval based on user data.</p>
-                        <div style="display: flex; gap: 1rem;">
-                            <a href="#" style="color: var(--primary-blue); text-decoration: none; font-size: 0.9rem; font-weight: 600;">GitHub <i class="fas fa-external-link-alt" style="font-size: 0.8rem;"></i></a>
+                        <p>A machine learning tool that analyzes applicant data to predict loan eligibility based on historical patterns.</p>
+                        <div class="project-links">
+                            <a href="#" title="View Source"><i class="fab fa-github"></i></a>
+                            <a href="#" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="glass-card project-card">
-                    <img src="project2.png" alt="Recommendation Engine" class="project-img">
-                    <div class="project-info">
+                <div class="card project-card">
+                    <div class="project-thumb">
+                        <img src="project2.png" alt="Recommendation Engine">
+                    </div>
+                    <div class="project-body">
                         <div class="project-tags">
-                            <span class="tag">ML</span>
+                            <span class="tag">AI</span>
                             <span class="tag">Algorithms</span>
                         </div>
-                        <h3>Smart Recommendation Engine</h3>
-                        <p>Implemented a collaborative filtering system to suggest items based on user behavior patterns.</p>
-                        <div style="display: flex; gap: 1rem;">
-                            <a href="#" style="color: var(--primary-blue); text-decoration: none; font-size: 0.9rem; font-weight: 600;">GitHub <i class="fas fa-external-link-alt" style="font-size: 0.8rem;"></i></a>
+                        <h3>Recommendation Engine</h3>
+                        <p>Built a personalized suggestion system using collaborative filtering to improve user engagement on digital platforms.</p>
+                        <div class="project-links">
+                            <a href="#" title="View Source"><i class="fab fa-github"></i></a>
+                            <a href="#" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project 3 -->
-                <div class="glass-card project-card">
-                    <img src="project3.png" alt="Web App" class="project-img">
-                    <div class="project-info">
+                <div class="card project-card">
+                    <div class="project-thumb">
+                        <img src="project3.png" alt="Fullstack App">
+                    </div>
+                    <div class="project-body">
                         <div class="project-tags">
                             <span class="tag">React</span>
-                            <span class="tag">API</span>
+                            <span class="tag">Node.js</span>
                         </div>
-                        <h3>Full Stack Portfolio</h3>
-                        <p>A modern, responsive portfolio website built with clean code and professional aesthetics.</p>
-                        <div style="display: flex; gap: 1rem;">
-                            <a href="#" style="color: var(--primary-blue); text-decoration: none; font-size: 0.9rem; font-weight: 600;">GitHub <i class="fas fa-external-link-alt" style="font-size: 0.8rem;"></i></a>
+                        <h3>Modern Web Application</h3>
+                        <p>A full-stack application featuring a clean user interface and robust data management for everyday use.</p>
+                        <div class="project-links">
+                            <a href="#" title="View Source"><i class="fab fa-github"></i></a>
+                            <a href="#" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
                         </div>
                     </div>
                 </div>
@@ -179,28 +173,25 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" style="background: rgba(255,255,255,0.02);">
+    <section id="experience">
         <div class="container">
-            <div class="section-header">
-                <h2>Experience</h2>
-                <div class="divider"></div>
-            </div>
-            <div class="experience-list">
-                <div class="experience-item">
-                    <div class="exp-date">2023 - Present</div>
-                    <div class="exp-content">
+            <h2 class="section-title">Experience</h2>
+            <div class="exp-list">
+                <div class="card exp-item">
+                    <div class="exp-header">
                         <h3>Web Development Intern</h3>
-                        <div class="exp-company">InternPe</div>
-                        <p>Working on various web projects, focusing on responsive design and frontend implementation using modern tools.</p>
+                        <span class="exp-date">2023 - Present</span>
                     </div>
+                    <div class="exp-company">InternPe</div>
+                    <p>Focusing on building responsive web components and optimizing frontend user experiences for various client projects.</p>
                 </div>
-                <div class="experience-item">
-                    <div class="exp-date">2023</div>
-                    <div class="exp-content">
+                <div class="card exp-item">
+                    <div class="exp-header">
                         <h3>Web Developer Intern</h3>
-                        <div class="exp-company">Apex Planet Software</div>
-                        <p>Contributed to the development of web-based solutions and assisted in debugging and optimizing codebase.</p>
+                        <span class="exp-date">2023 (3 Months)</span>
                     </div>
+                    <div class="exp-company">Apex Planet Software</div>
+                    <p>Assisted in the development of internal web tools and contributed to bug fixing and UI improvements in existing codebases.</p>
                 </div>
             </div>
         </div>
@@ -209,43 +200,26 @@
     <!-- Contact Section -->
     <section id="contact">
         <div class="container">
-            <div class="section-header">
-                <h2>Get In Touch</h2>
-                <div class="divider"></div>
-            </div>
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <p>I'm currently looking for new opportunities and internships. If you have a question or just want to say hi, my inbox is always open!</p>
-                    <div class="contact-links">
-                        <a href="mailto:sauravkumarnonia@gmail.com" class="contact-link">
-                            <i class="fas fa-envelope"></i>
-                            sauravkumarnonia@gmail.com
-                        </a>
-                        <a href="https://linkedin.com/in/sauravkrumar9" class="contact-link" target="_blank">
-                            <i class="fab fa-linkedin"></i>
-                            linkedin.com/in/sauravkrumar9
-                        </a>
-                        <a href="https://github.com/saurav827" class="contact-link" target="_blank">
-                            <i class="fab fa-github"></i>
-                            github.com/saurav827
-                        </a>
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-wrap">
+                <div class="contact-intro">
+                    <p>I am always open to new opportunities, collaborations, or even just a quick chat about technology. If you have a question or want to discuss a project, feel free to reach out!</p>
+                    <div style="margin-top: 2rem;">
+                        <a href="mailto:sauravkumarnonia@gmail.com" style="color: var(--primary); text-decoration: none; font-weight: 600; font-size: 1.1rem;">sauravkumarnonia@gmail.com</a>
                     </div>
                 </div>
-                <div class="glass-card">
-                    <form id="contact-form" style="display: flex; flex-direction: column; gap: 1.25rem;">
-                        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                            <label style="font-size: 0.9rem; font-weight: 500;">Name</label>
-                            <input type="text" placeholder="Your Name" required style="background: var(--surface-color); border: 1px solid var(--glass-border); padding: 0.75rem; border-radius: 8px; color: white; outline: none;">
+                <div class="card">
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
                         </div>
-                        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                            <label style="font-size: 0.9rem; font-weight: 500;">Email</label>
-                            <input type="email" placeholder="Your Email" required style="background: var(--surface-color); border: 1px solid var(--glass-border); padding: 0.75rem; border-radius: 8px; color: white; outline: none;">
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
                         </div>
-                        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                            <label style="font-size: 0.9rem; font-weight: 500;">Message</label>
-                            <textarea rows="4" placeholder="Your Message" required style="background: var(--surface-color); border: 1px solid var(--glass-border); padding: 0.75rem; border-radius: 8px; color: white; outline: none; resize: none;"></textarea>
+                        <div class="form-group">
+                            <textarea rows="4" placeholder="Your Message" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%; border: none; cursor: pointer;">Send Message</button>
+                        <button type="submit" class="btn btn-primary" style="border: none; cursor: pointer;">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -255,7 +229,12 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p class="footer-text">© 2026 Saurav Kumar. Built with passion and code.</p>
+            <div class="social-links">
+                <a href="https://github.com/saurav827" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/sauravkrumar9" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:sauravkumarnonia@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p style="font-size: 0.85rem;">© 2026 Saurav Kumar. Designed & Built by me.</p>
         </div>
     </footer>
 
