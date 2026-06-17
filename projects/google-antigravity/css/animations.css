@@ -1,0 +1,104 @@
+/* Anti Gravity Animations & Keyframes */
+
+/* Glowing blob slow motion drifting */
+@keyframes float-blob-blue {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(6vw, 4vh) scale(1.1); }
+  66% { transform: translate(-4vw, 8vh) scale(0.9); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes float-blob-red {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-5vw, -6vh) scale(0.9); }
+  66% { transform: translate(4vw, -2vh) scale(1.1); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes float-blob-yellow {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-8vw, 4vh) scale(1.05); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes float-blob-green {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(6vw, -6vh) scale(0.95); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+.glow-blue {
+  animation: float-blob-blue 25s infinite ease-in-out;
+}
+
+.glow-red {
+  animation: float-blob-red 22s infinite ease-in-out;
+}
+
+.glow-yellow {
+  animation: float-blob-yellow 28s infinite ease-in-out;
+}
+
+.glow-green {
+  animation: float-blob-green 20s infinite ease-in-out;
+}
+
+/* Micro-animations for Interactive elements */
+@keyframes button-click-effect {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.94); }
+  100% { transform: scale(1); }
+}
+
+.animate-click {
+  animation: button-click-effect 0.15s ease-out;
+}
+
+/* Float particles animation */
+@keyframes float-dust {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Google-style Spinner (loading fallback) */
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid var(--border-color);
+  border-top: 4px solid var(--google-blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Dynamic glow effect for spawned bodies on hover */
+.physics-body.hover-glow {
+  box-shadow: 0 0 15px var(--google-blue);
+}
+
+/* Floating animation before gravity triggers */
+@keyframes idle-floating {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+  100% { transform: translateY(0px); }
+}
+
+.idle-float {
+  animation: idle-floating 4s ease-in-out infinite;
+}

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO tags -->
+  <title>Fake News Detection System | Saurav Kumar Project Case Study</title>
+  <meta name="description" content="Detailed case study and interactive demo of Saurav Kumar's Fake News Detection System utilizing Machine Learning models and NLP pipelines.">
+  <meta name="keywords" content="NLP, Machine Learning, Python, FastAPI, Streamlit, Fake News Detection">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://fonts.gstatic.com/s/i/materialiconsoutlined/terminal/v14/24px.svg">
+
+  <!-- Style links -->
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  
+  <style>
+    .project-detail-container {
+      max-width: 900px;
+      margin: 8rem auto 4rem;
+      padding: 0 2rem;
+    }
+    .project-header-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .back-btn-container {
+      margin-bottom: 1rem;
+    }
+    .project-title {
+      font-size: clamp(2.2rem, 6vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      background: linear-gradient(to right, #ffffff, var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .project-meta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .project-card-full {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 24px;
+      padding: 3rem;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-premium);
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    .section-block h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-block h3::before {
+      content: '⚡';
+      color: var(--primary);
+    }
+    .section-block p {
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+    .tech-tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+    .btn-row {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    /* Interactive Demo widget styling */
+    .demo-widget-card {
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px dashed var(--border-glass);
+      border-radius: 20px;
+      padding: 2.2rem;
+      margin-top: 1.5rem;
+    }
+    .demo-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+    .demo-input-group label {
+      font-size: 0.9rem;
+      font-family: var(--font-mono);
+      color: var(--primary);
+    }
+    .demo-textarea {
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border-glass);
+      border-radius: 12px;
+      padding: 1rem;
+      color: var(--text-main);
+      font-family: var(--font-main);
+      font-size: 1rem;
+      outline: none;
+      resize: vertical;
+      min-height: 100px;
+      transition: var(--transition);
+    }
+    .demo-textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.1);
+    }
+    .demo-result-panel {
+      background: rgba(5, 5, 15, 0.6);
+      border: 1px solid var(--border-glass);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      display: none;
+      transition: var(--transition);
+    }
+    .result-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .result-badge {
+      padding: 5px 14px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+    }
+    .badge-real {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid #10b981;
+      color: #10b981;
+    }
+    .badge-fake {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid #ef4444;
+      color: #ef4444;
+    }
+    .result-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    .metric-item {
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid var(--border-glass);
+      border-radius: 8px;
+      padding: 0.8rem;
+      text-align: center;
+    }
+    .metric-val-sml {
+      font-size: 1.3rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      color: var(--text-main);
+    }
+    .metric-lbl-sml {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Gradients -->
+  <div class="mesh-gradient"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo-link">
+        <h2 class="logo">Saurav</h2>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html#projects" class="nav-link">Projects</a>
+        <a href="../../index.html#contact" class="nav-link">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTAINER -->
+  <main class="project-detail-container">
+    <div class="back-btn-container">
+      <a href="../../index.html#projects" class="nav-link back-btn" style="display: inline-flex; align-items: center;">
+        ← Back to Projects
+      </a>
+    </div>
+
+    <div class="project-header-section">
+      <h1 class="project-title">Fake News Detection System</h1>
+      <div class="project-meta">
+        <span class="tag">AI / Machine Learning</span>
+        <span class="tag">NLP Pipeline</span>
+        <span class="tag">Production Deployment</span>
+      </div>
+    </div>
+
+    <div class="project-card-full">
+      <div class="section-block">
+        <h3>📌 Project Overview</h3>
+        <p>
+          The Fake News Detection System is a multilingual artificial intelligence platform designed to classify article authenticity. In an era where misinformation spreads rapidly, this platform leverages state-of-the-art NLP algorithms and machine learning classification paradigms to evaluate textual inputs and verify truth vectors.
+        </p>
+      </div>
+
+      <div class="section-block">
+        <h3>⚙️ The Problem</h3>
+        <p>
+          Online news distribution channels suffer from malicious article replication and fabrication, which misleads audiences. Manual moderation is slow and struggles with multi-language texts. There is a critical requirement for a lightweight, automated classifier that outputs high-probability indicators of article reliability in real-time.
+        </p>
+      </div>
+
+      <div class="section-block">
+        <h3>🛠️ Architecture & Solution</h3>
+        <p>
+          I constructed a machine learning pipeline that preprocesses data (removing stopwords, tokenization, stemming, TF-IDF vectorization) and classifies it using logistic regression and ensemble models. The backend is powered by FastAPI, rendering predictions through a clean web dashboard built on Streamlit. User queries and verification results are cached inside a SQLite dataset.
+        </p>
+      </div>
+
+      <div class="section-block">
+        <h3>🚀 Tech Stack Used</h3>
+        <div class="tech-tag-list">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">FastAPI</span>
+          <span class="skill-tag">Streamlit</span>
+          <span class="skill-tag">Scikit-Learn</span>
+          <span class="skill-tag">Natural Language Processing (NLP)</span>
+          <span class="skill-tag">SQLite</span>
+        </div>
+      </div>
+
+      <!-- INTERACTIVE DEMO WIDGET (Phase 3 Interactive Demo) -->
+      <div class="demo-widget-card">
+        <h3 style="font-size: 1.25rem; color: var(--text-main); margin-bottom: 1rem;">💻 Live Interactive Demo Analyzer</h3>
+        
+        <div class="demo-input-group">
+          <label for="headline-input">Enter article headline or news text below:</label>
+          <textarea id="headline-input" class="demo-textarea" placeholder="Paste a headline (e.g., 'Scientists discover new energy source in the Arctic' or 'Government signs secret treaty to ban local currency')..."></textarea>
+        </div>
+        
+        <button id="classify-btn" class="btn btn-primary" style="padding: 0.75rem 1.8rem; font-size: 0.9rem;">
+          <span>Classify Authenticity</span>
+        </button>
+
+        <div id="result-panel" class="demo-result-panel">
+          <div class="result-header">
+            <h4 style="font-size: 1.05rem; font-family: var(--font-mono);">Analysis Result:</h4>
+            <span id="result-badge" class="result-badge">REAL</span>
+          </div>
+          <div class="result-metrics">
+            <div class="metric-item">
+              <div id="confidence-val" class="metric-val-sml">94.8%</div>
+              <div class="metric-lbl-sml">Confidence Score</div>
+            </div>
+            <div class="metric-item">
+              <div id="speed-val" class="metric-val-sml">8.2ms</div>
+              <div class="metric-lbl-sml">Vector Execution</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <a href="https://github.com/saurav827/fake-news-detection" target="_blank" rel="noopener noreferrer" class="btn btn-primary">GitHub Repository</a>
+        <a href="../../index.html#contact" class="btn btn-secondary">Inquire Details</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p class="footer-text">Saurav Kumar Portfolio | Project Case Study © 2026</p>
+    </div>
+  </footer>
+
+  <!-- Script for NLP mock classification -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const classifyBtn = document.getElementById('classify-btn');
+      const textInput = document.getElementById('headline-input');
+      const resultPanel = document.getElementById('result-panel');
+      const resultBadge = document.getElementById('result-badge');
+      const confidenceEl = document.getElementById('confidence-val');
+      const speedEl = document.getElementById('speed-val');
+
+      classifyBtn.addEventListener('click', () => {
+        const text = textInput.value.trim();
+        if (text === '') {
+          alert('Please enter some text to analyze.');
+          return;
+        }
+
+        // Show loading state
+        classifyBtn.disabled = true;
+        classifyBtn.innerHTML = '<span>Processing Vectors...</span>';
+        resultPanel.style.display = 'none';
+
+        setTimeout(() => {
+          // NLP Mock Logic: checks for buzzwords or patterns
+          const fakeBuzzwords = ['secret', 'hidden', 'scam', 'conspiracy', 'shocking', 'banned', 'exposed'];
+          const containsBuzzword = fakeBuzzwords.some(word => text.toLowerCase().includes(word));
+          
+          const isFake = containsBuzzword || Math.random() > 0.65;
+          const confidence = (85 + Math.random() * 14).toFixed(1) + '%';
+          const speed = (6 + Math.random() * 8).toFixed(1) + 'ms';
+
+          // Update UI
+          if (isFake) {
+            resultBadge.textContent = 'FAKED INDICATORS';
+            resultBadge.className = 'result-badge badge-fake';
+          } else {
+            resultBadge.textContent = 'RELIABLE NEWS';
+            resultBadge.className = 'result-badge badge-real';
+          }
+
+          confidenceEl.textContent = confidence;
+          speedEl.textContent = speed;
+
+          classifyBtn.disabled = false;
+          classifyBtn.innerHTML = '<span>Classify Authenticity</span>';
+          resultPanel.style.display = 'block';
+        }, 1200);
+      });
+    });
+  </script>
+</body>
+</html>

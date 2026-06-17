@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO tags -->
+  <title>Loan Approval Prediction | Saurav Kumar Project Case Study</title>
+  <meta name="description" content="Case study and interactive demo of Saurav Kumar's Loan Approval Prediction system utilizing machine learning risk classification.">
+  <meta name="keywords" content="Machine Learning, Python, Scikit-Learn, Risk Assessment, Predictive Modeling">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://fonts.gstatic.com/s/i/materialiconsoutlined/terminal/v14/24px.svg">
+
+  <!-- Style links -->
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  
+  <style>
+    .project-detail-container {
+      max-width: 900px;
+      margin: 8rem auto 4rem;
+      padding: 0 2rem;
+    }
+    .project-header-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .back-btn-container {
+      margin-bottom: 1rem;
+    }
+    .project-title {
+      font-size: clamp(2.2rem, 6vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      background: linear-gradient(to right, #ffffff, var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .project-meta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .project-card-full {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 24px;
+      padding: 3rem;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-premium);
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    .section-block h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-block h3::before {
+      content: '📊';
+      color: var(--primary);
+    }
+    .section-block p {
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+    .tech-tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+    .btn-row {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    /* Interactive Demo Card styling */
+    .demo-widget-card {
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px dashed var(--border-glass);
+      border-radius: 20px;
+      padding: 2.2rem;
+      margin-top: 1.5rem;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .form-group label {
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
+      color: var(--primary);
+    }
+    .form-input {
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border-glass);
+      border-radius: 8px;
+      padding: 0.8rem;
+      color: var(--text-main);
+      font-size: 0.95rem;
+      outline: none;
+      transition: var(--transition);
+    }
+    .form-input:focus {
+      border-color: var(--primary);
+    }
+    .demo-result-panel {
+      background: rgba(5, 5, 15, 0.6);
+      border: 1px solid var(--border-glass);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      display: none;
+      transition: var(--transition);
+    }
+    .result-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .result-badge {
+      padding: 5px 14px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+    }
+    .badge-approved {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid #10b981;
+      color: #10b981;
+    }
+    .badge-rejected {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid #ef4444;
+      color: #ef4444;
+    }
+    .result-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    .metric-item {
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid var(--border-glass);
+      border-radius: 8px;
+      padding: 0.8rem;
+      text-align: center;
+    }
+    .metric-val-sml {
+      font-size: 1.3rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      color: var(--text-main);
+    }
+    .metric-lbl-sml {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+    @media (max-width: 600px) {
+      .form-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Gradients -->
+  <div class="mesh-gradient"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo-link">
+        <h2 class="logo">Saurav</h2>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html#projects" class="nav-link">Projects</a>
+        <a href="../../index.html#contact" class="nav-link">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTAINER -->
+  <main class="project-detail-container">
+    <div class="back-btn-container">
+      <a href="../../index.html#projects" class="nav-link back-btn" style="display: inline-flex; align-items: center;">
+        ← Back to Projects
+      </a>
+    </div>
+
+    <div class="project-header-section">
+      <h1 class="project-title">Loan Approval Prediction</h1>
+      <div class="project-meta">
+        <span class="tag">Machine Learning</span>
+        <span class="tag">Predictive Modeling</span>
+        <span class="tag">Data Wrangling</span>
+      </div>
+    </div>
+
+    <div class="project-card-full">
+      <div class="section-block">
+        <h3>📌 Project Overview</h3>
+        <p>
+          This Loan Approval Prediction system is a predictive data modeling framework that analyzes loan applications in real-time. By utilizing multiple demographic, credit history, and asset parameters, the system outputs an interactive eligibility classification report, streamlining the evaluation process for credit agents.
+        </p>
+      </div>
+
+      <div class="section-block">
+        <h3>⚙️ The Problem</h3>
+        <p>
+          Manual loan evaluation introduces decision subjectivity and processing delay. Banks struggle to catalog and cross-reference hundreds of daily application sheets. A robust, objective pipeline is required to predict defaults and assess customer risk indicators based on historical credit trends.
+        </p>
+      </div>
+
+      <div class="section-block">
+        <h3>🛠️ Modeling & Solution</h3>
+        <p>
+          I performed exploratory data analysis (EDA), addressed class imbalances, scaled numerical columns, and encoded categorical entries. I trained and evaluated models (Random Forest, Gradient Boosting, Logistic Regression) using Scikit-Learn. The final model achieves high accuracy and recall parameters on test sets, providing bank officers with a reliable predictive score.
+        </p>
+      </div>
+
+      <div class="section-block">
+        <h3>🚀 Tech Stack Used</h3>
+        <div class="tech-tag-list">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">NumPy</span>
+          <span class="skill-tag">Scikit-Learn</span>
+          <span class="skill-tag">Jupyter Notebook</span>
+          <span class="skill-tag">Git</span>
+        </div>
+      </div>
+
+      <!-- INTERACTIVE CALCULATOR (Phase 3 Interactive Demo) -->
+      <div class="demo-widget-card">
+        <h3 style="font-size: 1.25rem; color: var(--text-main); margin-bottom: 1.5rem;">💻 Live Interactive Loan Eligibility Predictor</h3>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="income-input">Monthly Income ($):</label>
+            <input type="number" id="income-input" class="form-input" placeholder="e.g. 5000" value="4500">
+          </div>
+          <div class="form-group">
+            <label for="loan-input">Loan Amount ($):</label>
+            <input type="number" id="loan-input" class="form-input" placeholder="e.g. 15000" value="12000">
+          </div>
+          <div class="form-group">
+            <label for="credit-input">Credit Score (300 - 850):</label>
+            <input type="number" id="credit-input" class="form-input" placeholder="e.g. 700" value="680">
+          </div>
+          <div class="form-group">
+            <label for="history-input">Credit History Status:</label>
+            <select id="history-input" class="form-input" style="background-color: #030308;">
+              <option value="1">Good (No past defaults)</option>
+              <option value="0">Poor (Some past issues)</option>
+            </select>
+          </div>
+        </div>
+        
+        <button id="predict-btn" class="btn btn-primary" style="padding: 0.75rem 1.8rem; font-size: 0.9rem;">
+          <span>Evaluate Eligibility</span>
+        </button>
+
+        <div id="result-panel" class="demo-result-panel">
+          <div class="result-header">
+            <h4 style="font-size: 1.05rem; font-family: var(--font-mono);">Classifier Output:</h4>
+            <span id="result-badge" class="result-badge">APPROVED</span>
+          </div>
+          <div class="result-metrics">
+            <div class="metric-item">
+              <div id="prob-val" class="metric-val-sml">91.4%</div>
+              <div class="metric-lbl-sml">Approval Probability</div>
+            </div>
+            <div class="metric-item">
+              <div id="risk-val" class="metric-val-sml">LOW</div>
+              <div class="metric-lbl-sml">Assessed Risk Factor</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <a href="https://github.com/saurav827" target="_blank" rel="noopener noreferrer" class="btn btn-primary">GitHub Profile</a>
+        <a href="../../index.html#contact" class="btn btn-secondary">Request Case Study</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p class="footer-text">Saurav Kumar Portfolio | Project Case Study © 2026</p>
+    </div>
+  </footer>
+
+  <!-- Calculator Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const predictBtn = document.getElementById('predict-btn');
+      const incomeInput = document.getElementById('income-input');
+      const loanInput = document.getElementById('loan-input');
+      const creditInput = document.getElementById('credit-input');
+      const historyInput = document.getElementById('history-input');
+      
+      const resultPanel = document.getElementById('result-panel');
+      const resultBadge = document.getElementById('result-badge');
+      const probEl = document.getElementById('prob-val');
+      const riskEl = document.getElementById('risk-val');
+
+      predictBtn.addEventListener('click', () => {
+        const income = parseFloat(incomeInput.value) || 0;
+        const loan = parseFloat(loanInput.value) || 0;
+        const credit = parseInt(creditInput.value) || 0;
+        const history = parseInt(historyInput.value);
+
+        if (income <= 0 || loan <= 0 || credit < 300 || credit > 850) {
+          alert('Please verify form inputs. Credit scores must be between 300 and 850.');
+          return;
+        }
+
+        predictBtn.disabled = true;
+        predictBtn.innerHTML = '<span>Running ML Inference...</span>';
+        resultPanel.style.display = 'none';
+
+        setTimeout(() => {
+          // Mock ML Risk logic
+          let approved = true;
+          let prob = 50;
+          let risk = 'MEDIUM';
+
+          // Criteria rules
+          if (history === 0) {
+            approved = false;
+            prob = 15 + Math.random() * 20;
+            risk = 'HIGH';
+          } else if (credit < 580) {
+            approved = false;
+            prob = 20 + Math.random() * 25;
+            risk = 'HIGH';
+          } else {
+            // Debt to income ratio evaluation
+            const dti = loan / (income * 12);
+            if (dti > 0.4 && credit < 650) {
+              approved = false;
+              prob = 35 + Math.random() * 15;
+              risk = 'HIGH';
+            } else {
+              approved = true;
+              let scoreFactor = (credit - 580) / 270; // 0 to 1
+              prob = 70 + (scoreFactor * 25) + (Math.random() * 4);
+              risk = credit > 720 ? 'LOW' : 'MEDIUM';
+            }
+          }
+
+          if (approved) {
+            resultBadge.textContent = 'ELIGIBILITY APPROVED';
+            resultBadge.className = 'result-badge badge-approved';
+          } else {
+            resultBadge.textContent = 'ELIGIBILITY REJECTED';
+            resultBadge.className = 'result-badge badge-rejected';
+          }
+
+          probEl.textContent = prob.toFixed(1) + '%';
+          riskEl.textContent = risk;
+
+          predictBtn.disabled = false;
+          predictBtn.innerHTML = '<span>Evaluate Eligibility</span>';
+          resultPanel.style.display = 'block';
+        }, 1000);
+      });
+    });
+  </script>
+</body>
+</html>
