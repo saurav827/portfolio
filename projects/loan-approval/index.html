@@ -186,6 +186,9 @@
   </style>
 </head>
 <body>
+  <script>
+    document.body.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
+  </script>
 
   <!-- Background Gradients -->
   <div class="mesh-gradient"></div>
@@ -199,6 +202,9 @@
       <div class="nav-links">
         <a href="../../index.html#projects" class="nav-link">Projects</a>
         <a href="../../index.html#contact" class="nav-link">Contact</a>
+      </div>
+      <div class="nav-right-btn-group">
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">🌙</button>
       </div>
     </div>
   </nav>
@@ -393,5 +399,6 @@
       });
     });
   </script>
+  <script src="../../js/main.js" defer></script>
 </body>
 </html>

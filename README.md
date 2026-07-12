@@ -1,8 +1,8 @@
 # Saurav Kumar | Premium Developer Portfolio & AI Sandbox
 
-This repository contains the premium, industry-level developer portfolio and creative physics sandbox for **Saurav Kumar**, specializing as an AI Engineer, Machine Learning Developer, and Full Stack Developer.
+This repository contains the premium, industry-level developer portfolio and showcase for **Saurav Kumar**, specializing as an AI Engineer, Machine Learning Developer, and Full Stack Developer.
 
-The application showcases his education details, skills, certifications, dynamic GitHub integrations, and interactive case study presentations. It includes a relocated and rebranded anti-gravity creative physics sandbox built with Matter.js and GSAP.
+The application showcases his education details, skills, certifications, dynamic GitHub integrations, and interactive case study presentations.
 
 ---
 
@@ -27,7 +27,6 @@ portfolio/
 │
 ├── projects/
 │   ├── fake-news-detection/ # Case study for Fake News Detection System
-│   ├── google-antigravity/  # Rebranded Anti-Gravity Physics Sandbox
 │   ├── loan-approval/       # Case study for Loan Approval Prediction
 │   ├── ai-chatbot/          # Case study for Conversational AI Chatbot
 │
@@ -41,11 +40,9 @@ portfolio/
 
 1. **Vanilla HTML5 & CSS3**: Solid responsive grids, semantic outlines, and cross-device scaling.
 2. **Glassmorphism Theme System**: Modern dark-mode by default, sleek backdrop-filter blur accents, and glowing card borders.
-3. **Matter.js Physics**: Powers the relocated Anti-Gravity Sandbox, mapping DOM nodes into rigid physical bodies that collide, float, and bounce dynamically.
-4. **GSAP Animations**: Fluid entry transitions, float effects, and interactive sequences.
-5. **Web Audio API**: Synthetic Collision audio feedback synthesized procedurally in the sandbox.
-6. **Dynamic GitHub Sync**: Queries the GitHub API to render real-time statistics (followers, public repos, and a recent repositories grid feed) with error fallback state controls and a mock commitment activity tracker grid.
-7. **SEO Optimization**: Structured headers, meta tags, OpenGraph metadata, and accessibility compliance.
+3. **GSAP Animations**: Fluid entry transitions, float effects, and interactive sequences.
+4. **Dynamic GitHub Sync**: Queries the GitHub API to render real-time statistics (followers, public repos, and a recent repositories grid feed) with error fallback state controls and a mock commitment activity tracker grid.
+5. **SEO Optimization**: Structured headers, meta tags, OpenGraph metadata, and accessibility compliance.
 
 ---
 

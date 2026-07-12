@@ -23,14 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
       forks_count: 2
     },
     {
-      name: 'google-antigravity',
-      description: 'Relocated Matter.js physics sandbox simulating canvas dynamics and synthesized Web Audio impacts.',
-      language: 'JavaScript',
-      html_url: 'https://github.com/saurav827',
-      stargazers_count: 4,
-      forks_count: 1
-    },
-    {
       name: 'loan-approval-prediction',
       description: 'Machine Learning model predicting credit approval metrics based on historical dataset parameters.',
       language: 'Python',

@@ -167,6 +167,9 @@
   </style>
 </head>
 <body>
+  <script>
+    document.body.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
+  </script>
 
   <!-- Background Gradients -->
   <div class="mesh-gradient"></div>
@@ -180,6 +183,9 @@
       <div class="nav-links">
         <a href="../../index.html#projects" class="nav-link">Projects</a>
         <a href="../../index.html#contact" class="nav-link">Contact</a>
+      </div>
+      <div class="nav-right-btn-group">
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">🌙</button>
       </div>
     </div>
   </nav>
@@ -303,7 +309,7 @@
           if (q.includes('skill') || q.includes('techno') || q.includes('stack')) {
             response = "Saurav's technical skillset is categorized into:\n\n• Frontend: HTML5, CSS3, JavaScript, React, GSAP\n• Backend: FastAPI, Flask, Node.js\n• AI/ML: Python, Pandas, NumPy, Scikit-Learn, NLP\n• Database: SQLite, MySQL";
           } else if (q.includes('project') || q.includes('work') || q.includes('portfol')) {
-            response = "Saurav has built several featured systems:\n\n1. Fake News Detection: An NLP tool vectorizing headlines with Scikit-learn.\n2. Loan Approval: ML risk assessor calculating eligibility scores.\n3. Anti Gravity Sandbox: Matter.js physics playground.\n4. AI Chatbot: FastAPI context-aware messaging assistant.";
+            response = "Saurav has built several featured systems:\n\n1. Fake News Detection: An NLP tool vectorizing headlines with Scikit-learn.\n2. Loan Approval: ML risk assessor calculating eligibility scores.\n3. AI Chatbot: FastAPI context-aware messaging assistant.";
           } else if (q.includes('contact') || q.includes('email') || q.includes('linked') || q.includes('reach')) {
             response = "You can reach Saurav Kumar directly via:\n\n• Email: sauravkumarnonia@gmail.com\n• LinkedIn: linkedin.com/in/sauravkr9\n• GitHub: github.com/saurav827";
           } else if (q.includes('education') || q.includes('degree') || q.includes('college') || q.includes('btech')) {
@@ -326,5 +332,6 @@
       });
     });
   </script>
+  <script src="../../js/main.js" defer></script>
 </body>
 </html>
