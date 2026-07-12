@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO tags -->
+  <title>AskBuddy - AI QNA Bot | Saurav Kumar Project Case Study</title>
+  <meta name="description" content="Case study of AskBuddy, an AI-powered Question Answering chatbot by Saurav Kumar.">
+  <meta name="keywords" content="AskBuddy, AI Chatbot, Streamlit, LangChain, Google Gemini, Generative AI">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://fonts.gstatic.com/s/i/materialiconsoutlined/terminal/v14/24px.svg">
+
+  <!-- Style links -->
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  
+  <style>
+    .project-detail-container {
+      max-width: 900px;
+      margin: 8rem auto 4rem;
+      padding: 0 2rem;
+    }
+    .project-header-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .back-btn-container {
+      margin-bottom: 1rem;
+    }
+    .project-title {
+      font-size: clamp(2.2rem, 6vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      background: linear-gradient(to right, #ffffff, var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .project-meta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .project-card-full {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 24px;
+      padding: 3rem;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-premium);
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    .section-block h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-block h3::before {
+      content: '🧠';
+      color: var(--primary);
+    }
+    .section-block p, .section-block ul {
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+    .section-block ul {
+      margin-left: 1.5rem;
+      margin-top: 0.5rem;
+    }
+    .tech-tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+    .btn-row {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .screenshot-container {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px dashed var(--border-glass);
+      border-radius: 20px;
+      padding: 2.2rem;
+      margin-top: 1.5rem;
+      text-align: center;
+    }
+    .screenshot-img {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: var(--shadow-premium);
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    document.body.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
+  </script>
+
+  <!-- Background Gradients -->
+  <div class="mesh-gradient"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo-link">
+        <h2 class="logo">Saurav</h2>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html#projects" class="nav-link">Projects</a>
+        <a href="../../index.html#contact" class="nav-link">Contact</a>
+      </div>
+      <div class="nav-right-btn-group">
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">🌙</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTAINER -->
+  <main class="project-detail-container">
+    <div class="back-btn-container">
+      <a href="../../index.html#projects" class="nav-link back-btn" style="display: inline-flex; align-items: center;">
+        ← Back to Projects
+      </a>
+    </div>
+
+    <div class="project-header-section">
+      <h1 class="project-title">AskBuddy - AI QNA Bot</h1>
+      <div class="project-meta">
+        <span class="tag">Generative AI</span>
+        <span class="tag">Question Answering</span>
+        <span class="tag">LLM</span>
+      </div>
+    </div>
+
+    <div class="project-card-full">
+      <div class="section-block">
+        <h3>📌 Overview</h3>
+        <p>
+          AskBuddy is an AI-powered Question Answering chatbot designed to provide real-time, accurate answers to user queries. Built using a modern tech stack, it leverages the capabilities of Large Language Models (LLMs) to understand context, extract relevant information, and generate human-like responses seamlessly.
+        </p>
+      </div>
+
+      <div class="section-block">
+        <h3>✨ Features</h3>
+        <ul>
+          <li><strong>Real-time Inference:</strong> Rapid question answering capabilities powered by Google Gemini.</li>
+          <li><strong>Conversational Context:</strong> Maintains conversational memory using LangChain.</li>
+          <li><strong>User-Friendly Interface:</strong> Clean and interactive UI built efficiently with Streamlit.</li>
+          <li><strong>Highly Scalable:</strong> Modular pipeline architecture ready for integration with various data sources.</li>
+        </ul>
+      </div>
+
+      <div class="section-block">
+        <h3>🚀 Tech Stack Used</h3>
+        <div class="tech-tag-list">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Streamlit</span>
+          <span class="skill-tag">LangChain</span>
+          <span class="skill-tag">Google Gemini API</span>
+        </div>
+      </div>
+
+      <div class="screenshot-container">
+        <h3 style="font-size: 1.25rem; color: var(--text-main); margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 8px;">📸 Application Screenshot</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">A look at the AskBuddy chat interface.</p>
+        <img src="../../assets/images/askbuddy-qna.png" alt="AskBuddy Interface" class="screenshot-img">
+      </div>
+
+      <div class="btn-row">
+        <a href="https://github.com/saurav827/python-ai-projects" target="_blank" rel="noopener noreferrer" class="btn btn-primary">GitHub Repository</a>
+        <a href="../../index.html#contact" class="btn btn-secondary">Request Live Demo</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p class="footer-text">Saurav Kumar Portfolio | Project Case Study © 2026</p>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js" defer></script>
+</body>
+</html>
