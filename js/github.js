@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
       name: 'loan-approval-prediction',
       description: 'Machine Learning model predicting credit approval metrics based on historical dataset parameters.',
       language: 'Python',
-      html_url: 'https://github.com/saurav827',
+      html_url: 'https://github.com/saurav827/loan-approval-prediction',
       stargazers_count: 3,
       forks_count: 0
     },
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
       name: 'ai-chatbot',
       description: 'Conversational assistant using natural dialog structures, semantic prompts, and api bindings.',
       language: 'Python',
-      html_url: 'https://github.com/saurav827',
+      html_url: 'https://github.com/saurav827/ai-chatbot',
       stargazers_count: 3,
       forks_count: 1
     }
