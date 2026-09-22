@@ -1,175 +1,111 @@
-// DYNAMIC GITHUB INTEGRATION WITH RECENT REPOS AND LOADERS
+// ═══════════════════════════════════════════════════════
+// github.js — Live GitHub API integration
+// Shows real stats when API succeeds; shows "--" + link
+// when rate-limited. Removes fake contribution graph.
+// ═══════════════════════════════════════════════════════
+
 document.addEventListener('DOMContentLoaded', () => {
   const username = 'saurav827';
-  
-  // DOM Elements
-  const followersCountEl = document.getElementById('github-followers');
-  const reposCountEl = document.getElementById('github-repos');
-  const totalGistsEl = document.getElementById('github-gists');
-  const avatarEl = document.getElementById('github-avatar');
-  const profileNameEl = document.getElementById('github-name');
-  
-  const loaderContainer = document.getElementById('github-repos-loader');
-  const reposGrid = document.getElementById('recent-repos-list');
-  
-  // Local Cached Repos Fallbacks (if API limits hit)
-  const fallbackRepos = [
-    {
-      name: 'fake-news-detection',
-      description: 'Multilingual AI-powered Fake News Detection System using Machine Learning models and NLP pipelines.',
-      language: 'Python',
-      html_url: 'https://github.com/saurav827/fake-news-detection',
-      stargazers_count: 5,
-      forks_count: 2
-    },
-    {
-      name: 'loan-approval-prediction',
-      description: 'Machine Learning model predicting credit approval metrics based on historical dataset parameters.',
-      language: 'Python',
-      html_url: 'https://github.com/saurav827/loan-approval-prediction',
-      stargazers_count: 3,
-      forks_count: 0
-    },
-    {
-      name: 'ai-chatbot',
-      description: 'Conversational assistant using natural dialog structures, semantic prompts, and api bindings.',
-      language: 'Python',
-      html_url: 'https://github.com/saurav827/ai-chatbot',
-      stargazers_count: 3,
-      forks_count: 1
-    }
-  ];
+  const profileUrl = `https://api.github.com/users/${username}`;
+  const reposUrl   = `https://api.github.com/users/${username}/repos?sort=updated&per_page=6`;
 
-  // 1. Fetch Profile Info
-  fetch(`https://api.github.com/users/${username}`)
-    .then(response => {
-      if (!response.ok) throw new Error('API Rate Limit or Offline');
-      return response.json();
+  const followersEl = document.getElementById('github-followers');
+  const reposEl     = document.getElementById('github-repos');
+  const gistsEl     = document.getElementById('github-gists');
+  const avatarEl    = document.getElementById('github-avatar');
+  const nameEl      = document.getElementById('github-name');
+  const loaderEl    = document.getElementById('github-repos-loader');
+  const reposGrid   = document.getElementById('recent-repos-list');
+  const noteEl      = document.getElementById('github-api-note');
+
+  // ── Fetch profile stats ─────────────────────────────
+  fetch(profileUrl)
+    .then(r => {
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.json();
     })
     .then(data => {
-      if (followersCountEl) followersCountEl.textContent = data.followers;
-      if (reposCountEl) reposCountEl.textContent = data.public_repos;
-      if (totalGistsEl) totalGistsEl.textContent = data.public_gists || 0;
+      if (followersEl) followersEl.textContent = data.followers ?? '--';
+      if (reposEl)     reposEl.textContent     = data.public_repos ?? '--';
+      if (gistsEl)     gistsEl.textContent     = data.public_gists ?? '0';
       if (avatarEl && data.avatar_url) avatarEl.src = data.avatar_url;
-      if (profileNameEl && data.name) profileNameEl.textContent = data.name;
+      if (nameEl   && data.name)       nameEl.textContent = data.name;
+      if (noteEl) noteEl.style.display = 'none';
     })
     .catch(err => {
-      console.warn("Using profile stats fallbacks:", err.message);
-      if (followersCountEl) followersCountEl.textContent = '12';
-      if (reposCountEl) reposCountEl.textContent = '18';
-      if (totalGistsEl) totalGistsEl.textContent = '2';
-      if (profileNameEl) profileNameEl.textContent = 'Saurav Kumar';
+      console.warn('[github.js] Profile fetch failed:', err.message);
+      // Show "--" and surface the note
+      [followersEl, reposEl, gistsEl].forEach(el => {
+        if (el) el.textContent = '--';
+      });
+      if (noteEl) noteEl.style.display = 'block';
     });
 
-  // 2. Fetch Recent Repositories
-  fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=4`)
-    .then(response => {
-      if (!response.ok) throw new Error('Repo fetch rate limit exceeded');
-      return response.json();
+  // ── Fetch recent repos ──────────────────────────────
+  fetch(reposUrl)
+    .then(r => {
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.json();
     })
     .then(repos => {
-      // Hide loader and display list
-      if (loaderContainer) loaderContainer.style.display = 'none';
-      if (reposGrid) {
-        reposGrid.innerHTML = ''; // Clear skeleton markers
-        
-        repos.forEach(repo => {
-          const repoCard = createRepoCard(repo);
-          reposGrid.appendChild(repoCard);
-        });
+      if (loaderEl) loaderEl.style.display = 'none';
+      if (!reposGrid) return;
+      reposGrid.innerHTML = '';
+
+      if (!repos.length) {
+        reposGrid.innerHTML = '<p style="color:var(--text-muted);font-size:0.9rem;">No public repositories found.</p>';
+        return;
       }
+
+      repos.slice(0, 4).forEach(repo => {
+        reposGrid.appendChild(createRepoCard(repo));
+      });
     })
     .catch(err => {
-      console.warn("Using recent repos fallback data:", err.message);
-      // Hide loader and load cached items
-      if (loaderContainer) loaderContainer.style.display = 'none';
+      console.warn('[github.js] Repos fetch failed:', err.message);
+      if (loaderEl) loaderEl.style.display = 'none';
       if (reposGrid) {
-        reposGrid.innerHTML = '';
-        fallbackRepos.forEach(repo => {
-          const repoCard = createRepoCard(repo);
-          reposGrid.appendChild(repoCard);
-        });
+        reposGrid.innerHTML = `
+          <p style="color:var(--text-muted);font-size:0.88rem;font-family:var(--font-mono);">
+            Could not load repositories right now.
+            <a href="https://github.com/${username}" target="_blank" rel="noopener noreferrer" style="color:var(--primary);">
+              View on GitHub →
+            </a>
+          </p>`;
       }
     });
-
-  // Generate Procedural Activity Chart
-  generateProceduralGraph();
 });
 
-// Helper: Generate Repository Card DOM node
+// ── Build a repo card element ────────────────────────
 function createRepoCard(repo) {
-  const card = document.createElement('a');
-  card.className = 'repo-card';
-  card.href = repo.html_url;
-  card.target = '_blank';
-  card.rel = 'noopener noreferrer';
-  
-  const langClass = repo.language ? `lang-${repo.language.toLowerCase()}` : '';
-  const langName = repo.language || 'Code';
+  const a = document.createElement('a');
+  a.className = 'repo-card';
+  a.href      = repo.html_url;
+  a.target    = '_blank';
+  a.rel       = 'noopener noreferrer';
+  a.setAttribute('aria-label', `GitHub repository: ${repo.name}`);
 
-  card.innerHTML = `
+  const lang     = repo.language || '';
+  const langDot  = lang ? `<span class="lang-dot lang-${lang.toLowerCase()}"></span>` : '';
+  const langName = lang || 'Code';
+
+  a.innerHTML = `
     <div class="repo-header">
-      <h4>${repo.name}</h4>
-      <p class="repo-desc">${repo.description || 'No description available for this repository.'}</p>
+      <h4>${escapeHtml(repo.name)}</h4>
+      <p class="repo-desc">${escapeHtml(repo.description || 'No description available.')}</p>
     </div>
     <div class="repo-footer">
-      <span class="repo-lang">
-        <span class="lang-dot ${langClass}"></span>
-        <span>${langName}</span>
-      </span>
-      <span>⭐ ${repo.stargazers_count || 0}</span>
+      <span class="repo-lang">${langDot}<span>${escapeHtml(langName)}</span></span>
+      <span aria-label="${repo.stargazers_count || 0} stars">⭐ ${repo.stargazers_count || 0}</span>
     </div>
   `;
-  return card;
+  return a;
 }
 
-// Helper: Create Mock Commit graph
-function generateProceduralGraph() {
-  const container = document.getElementById('github-graph');
-  if (!container) return;
-  
-  container.innerHTML = '';
-  
-  const isMobile = window.innerWidth < 600;
-  const colsCount = isMobile ? 24 : 53;
-  const rowsCount = 7;
-  
-  for (let r = 0; r < rowsCount; r++) {
-    const row = document.createElement('div');
-    row.className = 'graph-row';
-    
-    for (let c = 0; c < colsCount; c++) {
-      const cell = document.createElement('div');
-      
-      const dayOfWeek = r;
-      const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-      let randVal = Math.random();
-      
-      let level = 0;
-      if (isWeekend) {
-        if (randVal > 0.88) level = 1;
-        else if (randVal > 0.96) level = 2;
-      } else {
-        if (randVal > 0.92) level = 4;
-        else if (randVal > 0.78) level = 3;
-        else if (randVal > 0.55) level = 2;
-        else if (randVal > 0.3) level = 1;
-      }
-      
-      cell.className = `graph-cell level-${level}`;
-      
-      let commits = 0;
-      if (level === 1) commits = Math.floor(Math.random() * 2) + 1;
-      else if (level === 2) commits = Math.floor(Math.random() * 3) + 3;
-      else if (level === 3) commits = Math.floor(Math.random() * 4) + 6;
-      else if (level === 4) commits = Math.floor(Math.random() * 6) + 10;
-      
-      const tooltip = commits > 0 ? `${commits} commits` : 'No commits';
-      cell.title = tooltip;
-      
-      row.appendChild(cell);
-    }
-    
-    container.appendChild(row);
-  }
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }

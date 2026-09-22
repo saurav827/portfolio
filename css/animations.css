@@ -1,137 +1,97 @@
-/* Core Animation Keyframes */
+/* ═══════════════════════════════════════════════════════
+   ANIMATIONS.CSS
+   Scroll-reveal entrance animations + reduced-motion guard
+════════════════════════════════════════════════════════ */
 
-/* Entrance animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* Entrance keyframes */
+@keyframes fadeInUp   { from { opacity:0; transform:translateY(22px); }  to { opacity:1; transform:translateY(0); } }
+@keyframes fadeInDown { from { opacity:0; transform:translateY(-22px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeInLeft { from { opacity:0; transform:translateX(-28px); } to { opacity:1; transform:translateX(0); } }
+@keyframes fadeInRight{ from { opacity:0; transform:translateX(28px); }  to { opacity:1; transform:translateX(0); } }
+@keyframes scaleUp    { from { opacity:0; transform:scale(0.96); }       to { opacity:1; transform:scale(1);    } }
 
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes scaleUp {
-  from {
-    opacity: 0;
-    transform: scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Float Drift animation */
+/* Idle float */
 @keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
 }
 
-/* Shimmer load loop */
-@keyframes shimmer {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
-}
-
-/* Reveal elements animation selectors */
+/* ── Reveal base ── */
 .reveal-el {
   opacity: 0;
-  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.reveal-el.active {
-  opacity: 1;
-}
+.reveal-el.active { opacity: 1; }
 
-.reveal-up {
-  transform: translateY(20px);
-}
-.reveal-up.active {
-  transform: translateY(0);
-}
+.reveal-up   { transform: translateY(22px); }
+.reveal-down { transform: translateY(-22px); }
+.reveal-left { transform: translateX(-28px); }
+.reveal-right{ transform: translateX(28px); }
+.reveal-scale{ transform: scale(0.96); }
 
-.reveal-down {
-  transform: translateY(-20px);
-}
-.reveal-down.active {
-  transform: translateY(0);
-}
+.reveal-up.active,
+.reveal-down.active  { transform: translateY(0); }
+.reveal-left.active,
+.reveal-right.active { transform: translateX(0); }
+.reveal-scale.active { transform: scale(1); }
 
-.reveal-left {
-  transform: translateX(-30px);
-}
-.reveal-left.active {
-  transform: translateX(0);
-}
-
-.reveal-right {
-  transform: translateX(30px);
-}
-.reveal-right.active {
-  transform: translateX(0);
-}
-
-.reveal-scale {
-  transform: scale(0.97);
-}
-.reveal-scale.active {
-  transform: scale(1);
-}
-
-.idle-float {
-  animation: float 4s ease-in-out infinite;
-}
-
-/* Stagger delays */
+/* Stagger delay helpers */
 .delay-100 { transition-delay: 100ms; }
 .delay-200 { transition-delay: 200ms; }
 .delay-300 { transition-delay: 300ms; }
 .delay-400 { transition-delay: 400ms; }
 .delay-500 { transition-delay: 500ms; }
 .delay-600 { transition-delay: 600ms; }
+
+/* Idle float utility */
+.idle-float { animation: float 4s ease-in-out infinite; }
+
+/* ══════════════════════════════════════════════
+   3D TILT EFFECT — perspective container
+   JS reads these variables and applies transforms
+══════════════════════════════════════════════ */
+.tilt-card {
+  /* Perspective wrapping is applied to the parent by JS */
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+  will-change: transform;
+}
+
+/* Glow ring on tilt-hover (pure CSS complement to JS) */
+.tilt-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(6,214,160,0.0), rgba(124,58,237,0.0));
+  transition: background 0.3s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.tilt-card:hover::after {
+  background: linear-gradient(
+    135deg,
+    rgba(6,214,160,0.08),
+    rgba(124,58,237,0.08)
+  );
+}
+
+/* ══════════════════════════════════════════════
+   PREFERS-REDUCED-MOTION — global kill-switch
+══════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-el {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .idle-float { animation: none !important; }
+  .badge-dot::after { animation: none !important; }
+  .profile-glow     { animation: none !important; }
+  .arrow-down       { animation: none !important; }
+  .tilt-card        { transition: none !important; }
+  .tilt-card::after { transition: none !important; }
+}
